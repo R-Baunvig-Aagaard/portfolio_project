@@ -30,6 +30,7 @@ public class UserData : IUserData
 
     // dbo.spUser.Get - [Id] parameter - Returns where [Id]
     // Return ONE User if any ? = nullable
+    // Id = id to match Usermodel with capital I and parameter with lowercase i
     public async Task<UserModel?> GetUser(int id)
     {
         var results = await _db.LoadData<UserModel, dynamic>("dbo.spUser.Get", new { Id = id });
