@@ -10,4 +10,4 @@ SQL Server database project
 * Stored Procedure
 * Dapper ORM
 
-*This Version V0.1 is inspired by IAmTimCorey*
+*This Version V0.1 is inspired and guided by IAmTimCorey*
