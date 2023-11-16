@@ -7,6 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Data;
+
+/// <summary>
+/// Use SqlDataAccess to connect to db and get the Load and Save Data methods
+/// LoadData<Usermodel, Parameter>(StoreProcedure, Parameter)
+/// SaveData<Parameter>(StoreProcedure, Parameter)
+/// </summary>
+
 public class UserData : IUserData
 {
     private readonly ISqlDataAccess _db;
@@ -15,11 +22,13 @@ public class UserData : IUserData
     {
         _db = db;
     }
+    // dbo.spUser.GetAll - ZERO parameters - Returns [Id] [FirstName] [LastName]
     // IEnumerable return ALL Users
+    // Loadtata return Usermodel, dynamic = any type or here none - (Stored precudure, parameter)
     public Task<IEnumerable<UserModel>> GetUsers() =>
         _db.LoadData<UserModel, dynamic>("dbo.spUser.GetAll", new { });
-    // Loadtata return Usermodel, dynamic = any or here none - (Stored precudure, parameter)
 
+    // dbo.spUser.Get - [Id] parameter - Returns where [Id]
     // Return ONE User if any ? = nullable
     public async Task<UserModel?> GetUser(int id)
     {
@@ -28,12 +37,15 @@ public class UserData : IUserData
         return results.FirstOrDefault();
     }
 
+    // dbo.spUser.Insert - [FirstName] [LastName] parameters - Insert Values
     public Task InsertUser(UserModel user) =>
         _db.SaveData("dbo.spUser.Insert", new { user.FirstName, user.LastName });
 
+    // dbo.spUser.Update - [Id][FirstName] [LastName] parameters - Update entire User
     public Task UpdateUser(UserModel user) =>
          _db.SaveData("dbo.spUser.Update", user);
 
+    // dbo.spUser.Delete - [Id] parameter - Delete where [Id]
     public Task DeleteUser(int id) =>
         _db.SaveData("dbo.spUser.Delete", new { Id = id });
 

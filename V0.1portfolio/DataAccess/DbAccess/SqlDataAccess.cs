@@ -4,6 +4,14 @@ using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace DataAccess.DbAccess;
+
+
+/// <summary>
+/// Connection to DB using a connectionstring or default connectionstring - Can be set in appsettings.json
+/// Load or Save data using a Storedprocedure with parameters [Id, FirstName, LastName]
+/// </summary>
+
+
 public class SqlDataAccess : ISqlDataAccess
 {
     private readonly IConfiguration _config;
@@ -36,6 +44,5 @@ public class SqlDataAccess : ISqlDataAccess
 
         // Execute stored proceudre og commandtype: storedprocedure
         await connection.ExecuteAsync(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
-
     }
 }

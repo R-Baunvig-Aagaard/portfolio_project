@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models;
 
+
+/// <summary>
+/// Data model User with same parameters as dbo.table User 
+/// </summary>
 public class UserModel
 {
     public int Id { get; set; }
