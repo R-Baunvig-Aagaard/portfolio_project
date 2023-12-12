@@ -1,3 +1,7 @@
+global using SuperheroAPI.Models;
+global using SuperheroAPI.Services;
+global using Microsoft.EntityFrameworkCore;
+using SuperheroAPI.Data;
 
 namespace SuperheroAPI
 {
@@ -13,6 +17,8 @@ namespace SuperheroAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<ISuperHeroService, SuperHeroService>();
+            builder.Services.AddDbContext<DataContext>();
 
             var app = builder.Build();
 
