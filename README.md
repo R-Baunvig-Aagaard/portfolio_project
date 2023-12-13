@@ -1,5 +1,13 @@
 # PORTFOLIO PROJECT
 
+## V0.2
+ASP Net Core Web API
+* w. Controller
+
+SQL Server database project
+* EF Core
+
+
 ## V0.1
 
 ASP Net Core Web API
