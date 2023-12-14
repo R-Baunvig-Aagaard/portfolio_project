@@ -18,7 +18,10 @@ namespace SuperheroAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<ISuperHeroService, SuperHeroService>();
-            builder.Services.AddDbContext<DataContext>();
+            builder.Services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+            });
 
             var app = builder.Build();
 
